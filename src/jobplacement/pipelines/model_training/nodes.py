@@ -7,6 +7,7 @@ import mlflow.lightgbm
 import optuna
 import warnings
 from functools import partial
+import json
 
 warnings.filterwarnings("ignore")
 
@@ -71,6 +72,12 @@ def train_model(params, X_train, y_train, X_valid, y_valid):
         verbose=20,
     )
     mlflow.sklearn.log_model(model, "model")
+    run_id = mlflow.active_run().info.run_id
+    val = {
+        'run_id': run_id
+    }
+    with open('run_id.json', 'w') as f:
+        json.dump(val, f)
     return model
 
 

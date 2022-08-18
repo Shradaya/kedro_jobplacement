@@ -4,20 +4,26 @@
 # Link: https://kedro.readthedocs.io/en/stable/data/data_catalog.html
 raw_data:
   type: pandas.CSVDataSet
-  filepath: s3://shradaya/mlops/data/01_raw/Placement_data_full_class.csv
+  # filepath: ./data/01_raw/Placement_data_full_class.csv
+  filepath: s3://shradaya/data/01_raw/Placement_data_full_class.csv
 
 X_train:
   type: pandas.CSVDataSet
-  filepath: s3://shradaya/mlops/data/03_primary/X_train.csv
+  # filepath: ./data/03_primary/X_train.csv
+  filepath: s3://shradaya/data/03_primary/X_train.csv
 
 y_train:
   type: pandas.CSVDataSet
-  filepath: s3://shradaya/mlops/data/03_primary/y_train.csv
+  # filepath: ./data/03_primary/y_train.csv
+  filepath: s3://shradaya/data/03_primary/y_train.csv
 
 X_valid:
   type: pandas.CSVDataSet
-  filepath: s3://shradaya/mlops/data/03_primary/X_valid.csv
+  # filepath: ./data/03_primary/X_valid.csv
+  filepath: s3://shradaya/data/03_primary/X_valid.csv
 
 y_valid:
   type: pandas.CSVDataSet
-  filepath: s3://shradaya/mlops/data/03_primary/y_valid.csv
+  # filepath: ./data/03_primary/y_valid.csv
+  filepath: s3://shradaya/data/03_primary/y_valid.csv
+
