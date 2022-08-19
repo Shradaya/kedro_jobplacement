@@ -17,7 +17,7 @@ class MlflowHook:
         client = MlflowClient()
         try:
             experiment_id = client.create_experiment(
-                experiment_name #, artifact_location=artifact_repository
+                experiment_name, artifact_location=artifact_repository
             )
         except:
             experiment_id = client.get_experiment_by_name(experiment_name).experiment_id
