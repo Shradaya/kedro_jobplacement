@@ -3,9 +3,6 @@ FROM python:3.8
 WORKDIR '/app'
 
 COPY requirements.txt .
-ENV HOME /root
-ENV PYTHONPATH "/usr/lib/python3/dist-packages:/usr/local/lib/python3.8/site-packages"
-
 
 # Install dependencies
 RUN apt-get update \

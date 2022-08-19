@@ -1,14 +1,32 @@
 version: '3'
 services:
+  db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_USER="${DB_USER}"
+      - POSTGRES_PASSWORD="${DB_PASSWORD}"
+      - POSTGRES_DB="${DB}"
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata2:/var/lib/postgresql/data/
   api:
+    links:
+      - "db:database"
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: ./Dockerfile 
     environment:
-      AWS_DEFAULT_REGION: us-east-1
-      AWS_ACCESS_KEY_ID: **
-      AWS_SECRET_ACCESS_KEY: **
-      
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      MLFLOW_TRACKING_URI: "postgresql+psycopg2://${DB_USER}:${DB_PASSWORD}@database/${DB}"
+      HOME: /root
+      PYTHONPATH: /usr/lib/python3/dist-packages:/usr/local/lib/python3.8/site-packages
     ports:
       - "5000"
       - "5000:5000"
+volumes:
+  pgdata2:
